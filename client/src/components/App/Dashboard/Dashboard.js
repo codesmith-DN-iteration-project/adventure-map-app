@@ -21,7 +21,7 @@ export default function Dashboard() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          userID: 1,
+          userID: state.userID,
         })
       }).then((res) => res.json())
       .then((res) => {

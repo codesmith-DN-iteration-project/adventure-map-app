@@ -14,11 +14,10 @@ export default function ParkName({ park, favs, userID }) {
     //display corresponding heart based on true/false status of favorite
 
     //loop thru favs, see if park.fullName is present, if so make heart filled
-    console.log(favs);
     for (let i = 0; i < favs.length; i++) {
       const name = favs[i].park_name;
-      if(name == park.full_name){
-        console.log(true);
+      
+      if(name == park.fullName || park.fav){
         park.fav = true;
       }
     }
@@ -27,7 +26,7 @@ export default function ParkName({ park, favs, userID }) {
       changeHeart(heartStatus = heartFilled);
     }else{
       changeHeart(heartStatus = heartOutline);
-    } 
+    }
   })
 
   function clickHeart(){
@@ -68,7 +67,7 @@ export default function ParkName({ park, favs, userID }) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userID: 1,
+            userID: userID,
             parkName: park.fullName
           })
         }).then((res) => res.json())
